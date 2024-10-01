@@ -14,10 +14,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ (github.event.review.state == 'approved') }}
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - run: echo ${{ github.event.review.state }}
+    - name: Dump GitHub context
+      if: ${{ (github.event.review.state == 'approved') && (contains(github.event.pull_request.review.user.login, 'jeschu1')) }}
+      env:
+        GITHUB_CONTEXT: ${{ toJSON(github) }}
+      run: echo "$GITHUB_CONTEXT"
+    - name: Failure
+      if: ${{ (github.event.review.state == 'approved') && (contains(github.event.pull_request.review.user.login, 'jeschu1')) }}
+    - run: return -1;    
