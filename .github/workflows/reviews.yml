@@ -14,7 +14,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.review.state == 'approved'
+    if: ${{ (github.event.review.state == 'approved') }}
     steps:
-      - name: Success!
-        run: echo Success!
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - run: echo ${{ github.event.review.state }}
