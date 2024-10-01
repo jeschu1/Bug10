@@ -12,7 +12,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: jeschu1_approved
+    - name: Success
+      if: ${{ (github.event.review.state == 'approved') && (contains(github.event.review.user.login, 'jeschu1')) }}
       env:
         GITHUB_CONTEXT: ${{ toJSON(github) }}
       run: echo "$GITHUB_CONTEXT"
