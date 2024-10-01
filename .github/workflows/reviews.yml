@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: jeschu1_approved
-      if: ${{ (github.event.review.state == 'approved') && (contains(github.event.pull_request.review.user.login, 'jeschu1')) }}
       env:
         GITHUB_CONTEXT: ${{ toJSON(github) }}
       run: echo "$GITHUB_CONTEXT"
