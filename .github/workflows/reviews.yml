@@ -1,0 +1,20 @@
+# This is a basic workflow to help you get started with Actions
+
+name: RequiredApprovals
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  pull_request:
+    branches: [ "main" ]
+  pull_request_review:
+    types: [submitted]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.review.state == 'approved'
+    steps:
+      - name: Success!
+        run: echo Success!
