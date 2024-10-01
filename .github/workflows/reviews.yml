@@ -22,4 +22,4 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
     - name: Failure
       if: ${{ (github.event.review.state == 'approved') && (contains(github.event.pull_request.review.user.login, 'jeschu1')) }}
-    - run: return -1;    
+      run: return -1;    
