@@ -16,7 +16,7 @@ jobs:
       uses: octokit/request-action@v2.x
       id: view_pr
       with:
-        route: GET /repos/jeschu1/Bug10/pulls/${{ github.event.pull_request.id }}
+        route: GET /repos/jeschu1/Bug10/pulls/${{ github.event.pull_request.number }}
         # pull_request_id: ${{ github.event.number }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
