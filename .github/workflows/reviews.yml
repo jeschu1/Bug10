@@ -12,11 +12,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: CLI
-      run: gh pr view 1
+    - name: API
+      uses: octokit/request-action@v2.x
+      id: view_pr
+      with:
+        route: POST /repos/:repository/pulls/1
+        repository: ${{ github.repository }}
+        pull_request_id: ${{ github.event.number }}
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ISSUE: ${{ github.event.issue.html_url }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Success
       if: ${{ (github.event.review.state == 'approved') && (contains(github.event.review.user.login, 'jeschu1')) }}
       env:
