@@ -25,7 +25,7 @@ jobs:
         PR: ${{ toJSON(github.event.pull_request.requested_reviewers) }}
       run: echo "$PR"
     - name: Success
-      if: ${{ (github.event.review.state == 'approved') && (contains(github.event.review.user.login, 'jeschu1')) }}
+      # if: ${{ (github.event.review.state == 'approved') && (contains(github.event.review.user.login, 'jeschu1')) }}
       env:
         GITHUB_CONTEXT: ${{ toJSON(github) }}
       run: echo "$GITHUB_CONTEXT"
