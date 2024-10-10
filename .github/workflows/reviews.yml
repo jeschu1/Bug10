@@ -17,12 +17,9 @@ jobs:
       id: view_pr
       with:
         route: GET /repos/jeschu1/Bug10/pulls/${{ github.event.pull_request.number }}
-        output: |
-          requested_reviewers:
-        # pull_request_id: ${{ github.event.number }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - run: "echo api: '${{ steps.view_pr.outputs.data }}'"
+    - run: "echo api: '${{ steps.view_pr.outputs.data.requested_reviewers }}'"
     - name: Success
       if: ${{ (github.event.review.state == 'approved') && (contains(github.event.review.user.login, 'jeschu1')) }}
       env:
