@@ -12,14 +12,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    #- name: API
-    #  uses: octokit/request-action@v2.x
-    #  id: view_pr
-    #  with:
-    #    route: GET /repos/jeschu1/Bug10/pulls/${{ github.event.pull_request.number }}
-    #  env:
-    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #- run: "echo api: '${{ steps.view_pr.outputs.data.requested_reviewers }}'"
+    - name: API
+      uses: octokit/request-action@v2.x
+      id: view_pr
+      with:
+        route: GET /repos/jeschu1/Bug10/pulls/${{ github.event.pull_request.number }}/reviews
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: "echo api: '${{ steps.view_pr.outputs.data }}'"
     - name: Reviewers
       env:
         PR: ${{ toJSON(github.event.pull_request.requested_reviewers) }}
