@@ -24,7 +24,7 @@ jobs:
           array=${{ steps.view_pr.outputs.data }}
           for item in ${array[*]}
           do
-            if [[ "$item.user.login" == "jeschu1" ]]; then
+            if [[ "$item" == "jeschu1" ]]; then
               echo "Found Juice"
             fi
             echo "$item.user.login" 
