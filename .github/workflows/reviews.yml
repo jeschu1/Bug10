@@ -21,14 +21,14 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
     - name: check reviews
       run: |
-          array=${{ steps.view_pr.outputs.data }}
-          for item in ${array[*]}
+          for item in ${{ steps.view_pr.outputs.data }}
           do
             if [[ "$item" == "jeschu1" ]]; then
               echo "Found Juice"
             fi
             echo "$item.user.login" 
           done
+      shel: bash
     - run: "echo api: '${{ steps.view_pr.outputs.data }}'"
     - name: Reviewers
       env:
