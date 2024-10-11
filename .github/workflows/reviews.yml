@@ -28,7 +28,7 @@ jobs:
             fi
             echo "$item.user.login" 
           done
-      shel: bash
+      shell: bash
     - run: "echo api: '${{ steps.view_pr.outputs.data }}'"
     - name: Reviewers
       env:
